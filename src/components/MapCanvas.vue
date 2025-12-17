@@ -25,8 +25,7 @@
   import CircleStyle from 'ol/style/Circle';
   import RegularShape from 'ol/style/RegularShape';
 
-  const { CONFIG, state, plannedRoute, updateSimulationFrame, play, setRouteFromLonLat } =
-    useSimulation();
+  const { CONFIG, state, plannedRoute, updateSimulationFrame, play, setRouteFromLonLat } = useSimulation();
 
   const mapRef = ref(null);
   let map = null;
@@ -69,10 +68,7 @@
         vectorSource.addFeature(poly);
       }
     } catch (e) {
-      console.warn(
-        'turf buffer failed or turf not available, falling back to line buffer rendering',
-        e
-      );
+      console.warn('turf buffer failed or turf not available, falling back to line buffer rendering', e);
       const fallbackLine = new Feature({ geometry: new LineString(routeCoords) });
       fallbackLine.setStyle(
         new Style({
@@ -242,12 +238,7 @@
         const mid = plannedRoute.value[Math.floor(plannedRoute.value.length / 2)];
         map.getView().setCenter([mid.x, mid.y]);
       }
-      console.info(
-        'Planned route length:',
-        plannedRoute.value.length,
-        'first coord:',
-        routeCoords[0]
-      );
+      console.info('Planned route length:', plannedRoute.value.length, 'first coord:', routeCoords[0]);
     } else {
       console.warn('plannedRoute is empty after conversion');
     }
@@ -256,10 +247,7 @@
     if (plannedRoute.value && Array.isArray(plannedRoute.value) && plannedRoute.value.length > 1) {
       console.info('Planned route ready. Click Start to begin simulation.');
     } else {
-      console.warn(
-        'Planned route not ready or too short; waiting for valid route.',
-        plannedRoute.value
-      );
+      console.warn('Planned route not ready or too short; waiting for valid route.', plannedRoute.value);
     }
 
     // when user starts playback, zoom to followZoom and center on current car position
